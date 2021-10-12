@@ -10,12 +10,31 @@ personalMovieDB.actors = {};
 personalMovieDB.genres = [];
 personalMovieDB.privat = false;
 
-let lastFilm1 = prompt('Один из последних просмотренных фильмов', '');
-let filmValue1 = +prompt('На сколько оцените его?', '');
-let lastFilm2 = prompt('Один из последних просмотренных фильмов', '');
-let filmValue2 = +prompt('На сколько оцените его?', '');
+if (personalMovieDB.count < 10) {
+	alert('Просмотренно довольно мало фильмов');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+	alert('Вы классический зритель');
+} else if (personalMovieDB.count > 30) {
+	alert('Вы киноман');
+} else {
+	alert('Ошибка, попробуйте еще');
+}
 
-personalMovieDB.movies[lastFilm1] = filmValue1;
-personalMovieDB.movies[lastFilm2] = filmValue2;
+for (let i = 0; i < 2; i++) {
+	let lastFilm = prompt('Один из последних просмотренных фильмов', '');
+	let filmValue = +prompt('На сколько оцените его?', '');
+
+	if (
+		lastFilm !== '' &&
+		filmValue !== '' &&
+		lastFilm !== null &&
+		filmValue !== null &&
+		lastFilm.length < 50
+	) {
+		personalMovieDB.movies[lastFilm] = filmValue;
+	} else {
+		i--;
+	}
+}
 
 console.log(personalMovieDB);
